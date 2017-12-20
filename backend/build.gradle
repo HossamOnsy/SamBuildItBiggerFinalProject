@@ -35,4 +35,5 @@ dependencies {
     //    compile project(path: ':lib')
     implementation files('JavaJokesLibrary.jar')
     compile project(path: ':JavaJokesLib')
+
 }

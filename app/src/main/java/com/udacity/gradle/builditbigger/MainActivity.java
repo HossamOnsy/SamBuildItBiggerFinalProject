@@ -1,16 +1,14 @@
 package com.udacity.gradle.builditbigger;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
-import sam.com.javajokeslib.JavaJokesList;
+import static com.udacity.gradle.builditbigger.MainActivityFragment.progress_bar;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -46,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void tellJoke(View view) {
 
+        progress_bar.setVisibility(View.VISIBLE);
         new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
 //        Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
     }

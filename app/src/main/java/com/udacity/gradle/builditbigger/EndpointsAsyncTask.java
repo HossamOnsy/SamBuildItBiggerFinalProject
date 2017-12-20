@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.util.Pair;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -17,6 +18,8 @@ import java.io.IOException;
 
 import sam.com.androidjokeslibrary.*;
 import sam.com.javajokeslib.JavaJokesList;
+
+import static com.udacity.gradle.builditbigger.MainActivityFragment.progress_bar;
 
 /**
  * Created by root on 17/12/17.
@@ -62,11 +65,11 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
     @Override
     protected void onPostExecute(String result) {
         Log.v("doInBackground","onPostExecute ---->  " +result );
-        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
-
+//        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+        progress_bar.setVisibility(View.GONE);
         JavaJokesList javaJokesList =new JavaJokesList();
         javaJokesList.prepareJokes();
-        String s = javaJokesList.getList().get((int)(Math.random()+10));
+        String s = javaJokesList.getList().get((int)(Math.random()+9));
 
         Intent intent = new Intent(context, sam.com.androidjokeslibrary.MainActivity.class)
                 .putExtra("Joke",s);

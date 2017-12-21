@@ -43,7 +43,8 @@ public class MyEndpoint {
     public MyBean getJoke() {
         MyBean response = new MyBean();
         JavaJokesList javaJokesList =new JavaJokesList();
-        response.setData(javaJokesList.getList().get((int)(Math.random()+10)));
+//        javaJokesList.prepareJokes();
+        response.setData(javaJokesList.getList().get((int)(Math.random()*9)));
 //        JavaJo
 //        response.setData("Hi, " + name);
 

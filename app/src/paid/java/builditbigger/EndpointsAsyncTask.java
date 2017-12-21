@@ -1,4 +1,4 @@
-package com.udacity.gradle.builditbigger;
+package builditbigger;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -16,10 +15,10 @@ import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
 
 import java.io.IOException;
 
-import sam.com.androidjokeslibrary.*;
 import sam.com.javajokeslib.JavaJokesList;
 
-import static com.udacity.gradle.builditbigger.MainActivityFragment.progress_bar;
+import static builditbigger.MainActivityFragment.progress_bar;
+import static builditbigger.MainActivityFragment.text_after_async;
 
 /**
  * Created by root on 17/12/17.
@@ -31,7 +30,7 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
 
     @Override
     protected String doInBackground(Pair<Context, String>... params) {
-        if(myApiService == null) {  // Only do this once
+        if (myApiService == null) {  // Only do this once
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
                     // options for running against local devappserver
@@ -52,7 +51,7 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
         context = params[0].first;
         String name = params[0].second;
 
-        Log.v("doInBackground","doInBackground ---->  " +name );
+        Log.v("doInBackground", "doInBackground ---->  " + name);
         try {
 
 
@@ -64,15 +63,26 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
 
     @Override
     protected void onPostExecute(String result) {
-        Log.v("doInBackground","onPostExecute ---->  " +result );
+        Log.v("doInBackground", "onPostExecute ---->  " + result);
 //        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+
+
+        JavaJokesList javaJokesList = new JavaJokesList();
+//        javaJokesList.prepareJokes();
+//        double x1 = Math.random();
+        int x = (int) (Math.random() * 9);
+        String s = javaJokesList.getList().get(x);
         progress_bar.setVisibility(View.GONE);
-        JavaJokesList javaJokesList =new JavaJokesList();
-        javaJokesList.prepareJokes();
-        String s = javaJokesList.getList().get((int)(Math.random()+9));
+        text_after_async.setVisibility(View.VISIBLE);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         Intent intent = new Intent(context, sam.com.androidjokeslibrary.MainActivity.class)
-                .putExtra("Joke",s);
+                .putExtra("Joke", s);
+
         context.startActivity(intent);
     }
 }

@@ -8,8 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import static com.udacity.gradle.builditbigger.MainActivityFragment.progress_bar;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +15,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//       / FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+//        fragmentTransaction.replace(R.id.)
     }
 
 
@@ -42,12 +43,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void tellJoke(View view) {
-
-        progress_bar.setVisibility(View.VISIBLE);
-        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
-//        Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
-    }
 
 
 }

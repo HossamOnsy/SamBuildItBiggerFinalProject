@@ -20,6 +20,7 @@ import sam.com.androidjokeslibrary.*;
 import sam.com.javajokeslib.JavaJokesList;
 
 import static com.udacity.gradle.builditbigger.MainActivityFragment.progress_bar;
+import static com.udacity.gradle.builditbigger.MainActivityFragment.text_after_async;
 
 /**
  * Created by root on 17/12/17.

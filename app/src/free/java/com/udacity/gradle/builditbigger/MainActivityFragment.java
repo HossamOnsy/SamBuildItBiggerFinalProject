@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -41,6 +42,7 @@ public class MainActivityFragment extends Fragment {
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .build();
         mAdView.loadAd(adRequest);
+
         text_after_async = (TextView) root.findViewById(R.id.text_after_async);
         tell_jo_btn = (Button) root.findViewById(R.id.tell_jo_btn);
         tell_jo_btn.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +53,11 @@ public class MainActivityFragment extends Fragment {
         });
 
         return root;
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        text_after_async.setVisibility(View.GONE);
     }
 
     public void tellJoke() {

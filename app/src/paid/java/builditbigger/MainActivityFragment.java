@@ -32,6 +32,7 @@ public class MainActivityFragment extends Fragment {
 //        if()
         View root = inflater.inflate(R.layout.fragment_main, container, false);
         text_after_async = (TextView) root.findViewById(R.id.text_after_async);
+
         progress_bar = (ProgressBar) root.findViewById(R.id.progress_bar);
         tell_jo_btn = (Button) root.findViewById(R.id.tell_jo_btn);
         tell_jo_btn.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +43,12 @@ public class MainActivityFragment extends Fragment {
         });
 
         return root;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        text_after_async.setVisibility(View.GONE);
     }
 
     public void tellJoke() {
